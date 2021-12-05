@@ -1,11 +1,17 @@
 lockfileVersion: 5.3
 
 specifiers:
+  '@douyinfe/semi-icons': ^2.1.4
   '@douyinfe/semi-ui': ^2.1.4
+  '@types/lodash-es': ^4.17.5
   '@types/react': ^17.0.0
+  '@types/react-beautiful-dnd': ^13.1.2
   '@types/react-dom': ^17.0.0
+  '@types/styled-components': ^5.1.16
   '@vitejs/plugin-react': ^1.0.0
+  lodash-es: ^4.17.21
   react: ^17.0.0
+  react-beautiful-dnd: ^13.1.0
   react-dom: ^17.0.0
   reset-css: ^5.0.1
   styled-components: ^5.3.3
@@ -13,15 +19,21 @@ specifiers:
   vite: ^2.6.4
 
 dependencies:
+  '@douyinfe/semi-icons': registry.npmmirror.com/@douyinfe/semi-icons/2.1.4_react@17.0.2
   '@douyinfe/semi-ui': registry.npmmirror.com/@douyinfe/semi-ui/2.1.4_d5c215a71cdc3853e6673ca67dc4c091
+  lodash-es: registry.nlark.com/lodash-es/4.17.21
   react: registry.npmmirror.com/react/17.0.2
+  react-beautiful-dnd: registry.nlark.com/react-beautiful-dnd/13.1.0_react-dom@17.0.2+react@17.0.2
   react-dom: registry.npmmirror.com/react-dom/17.0.2_react@17.0.2
   reset-css: registry.npmmirror.com/reset-css/5.0.1
   styled-components: registry.npmmirror.com/styled-components/5.3.3_react-dom@17.0.2+react@17.0.2
 
 devDependencies:
+  '@types/lodash-es': registry.npmmirror.com/@types/lodash-es/4.17.5
   '@types/react': registry.npmmirror.com/@types/react/17.0.37
+  '@types/react-beautiful-dnd': registry.npmmirror.com/@types/react-beautiful-dnd/13.1.2
   '@types/react-dom': registry.npmmirror.com/@types/react-dom/17.0.11
+  '@types/styled-components': registry.npmmirror.com/@types/styled-components/5.1.16
   '@vitejs/plugin-react': registry.npmmirror.com/@vitejs/plugin-react/1.1.0
   typescript: registry.npmmirror.com/typescript/4.5.2
   vite: registry.npmmirror.com/vite/2.6.14
@@ -163,6 +175,14 @@ packages:
     engines: {node: '>=6'}
     dev: false
 
+  registry.nlark.com/css-box-model/1.2.1:
+    resolution: {integrity: sha1-WZUdO4H9ayB0pi1JREQVsNK018E=, registry: https://registry.npm.taobao.org/, tarball: https://registry.nlark.com/css-box-model/download/css-box-model-1.2.1.tgz}
+    name: css-box-model
+    version: 1.2.1
+    dependencies:
+      tiny-invariant: registry.npmmirror.com/tiny-invariant/1.2.0
+    dev: false
+
   registry.nlark.com/css-color-keywords/1.0.0:
     resolution: {integrity: sha1-/qJhbcZ2spYmhrOvjb2+GAskTgU=, registry: https://registry.npm.taobao.org/, tarball: https://registry.nlark.com/css-color-keywords/download/css-color-keywords-1.0.0.tgz}
     name: css-color-keywords
@@ -250,7 +270,6 @@ packages:
     version: 3.3.2
     dependencies:
       react-is: registry.npmmirror.com/react-is/16.13.1
-    dev: false
 
   registry.nlark.com/inflight/1.0.6:
     resolution: {integrity: sha1-Sb1jMdfQLQwJvJEKEHW6gWW1bfk=, registry: https://registry.npm.taobao.org/, tarball: https://registry.nlark.com/inflight/download/inflight-1.0.6.tgz}
@@ -296,6 +315,12 @@ packages:
     dependencies:
       minimist: registry.nlark.com/minimist/1.2.5
     dev: true
+
+  registry.nlark.com/lodash-es/4.17.21:
+    resolution: {integrity: sha1-Q+YmxG5lkbd1C+srUBFzkMYJ4+4=, registry: https://registry.npm.taobao.org/, tarball: https://registry.nlark.com/lodash-es/download/lodash-es-4.17.21.tgz}
+    name: lodash-es
+    version: 4.17.21
+    dev: false
 
   registry.nlark.com/loose-envify/1.4.0:
     resolution: {integrity: sha1-ce5R+nvkyuwaY4OffmgtgTLTDK8=, registry: https://registry.npm.taobao.org/, tarball: https://registry.nlark.com/loose-envify/download/loose-envify-1.4.0.tgz}
@@ -363,6 +388,34 @@ packages:
       loose-envify: registry.nlark.com/loose-envify/1.4.0
       object-assign: registry.nlark.com/object-assign/4.1.1
       react-is: registry.npmmirror.com/react-is/16.13.1
+    dev: false
+
+  registry.nlark.com/raf-schd/4.0.3:
+    resolution: {integrity: sha1-XWw070b4sqDogKj823Q+/Fv9vBo=, registry: https://registry.npm.taobao.org/, tarball: https://registry.nlark.com/raf-schd/download/raf-schd-4.0.3.tgz}
+    name: raf-schd
+    version: 4.0.3
+    dev: false
+
+  registry.nlark.com/react-beautiful-dnd/13.1.0_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-7JfIEJNZNSZFSw3mmFKuQzeDhE0=, registry: https://registry.npm.taobao.org/, tarball: https://registry.nlark.com/react-beautiful-dnd/download/react-beautiful-dnd-13.1.0.tgz}
+    id: registry.nlark.com/react-beautiful-dnd/13.1.0
+    name: react-beautiful-dnd
+    version: 13.1.0
+    peerDependencies:
+      react: ^16.8.5 || ^17.0.0
+      react-dom: ^16.8.5 || ^17.0.0
+    dependencies:
+      '@babel/runtime': registry.npmmirror.com/@babel/runtime/7.16.3
+      css-box-model: registry.nlark.com/css-box-model/1.2.1
+      memoize-one: registry.npmmirror.com/memoize-one/5.2.1
+      raf-schd: registry.nlark.com/raf-schd/4.0.3
+      react: registry.npmmirror.com/react/17.0.2
+      react-dom: registry.npmmirror.com/react-dom/17.0.2_react@17.0.2
+      react-redux: registry.npmmirror.com/react-redux/7.2.6_react-dom@17.0.2+react@17.0.2
+      redux: registry.npmmirror.com/redux/4.1.2
+      use-memo-one: registry.nlark.com/use-memo-one/1.1.2_react@17.0.2
+    transitivePeerDependencies:
+      - react-native
     dev: false
 
   registry.nlark.com/react-draggable/4.4.4_react-dom@17.0.2+react@17.0.2:
@@ -447,6 +500,17 @@ packages:
     name: to-fast-properties
     version: 2.0.0
     engines: {node: '>=4'}
+
+  registry.nlark.com/use-memo-one/1.1.2_react@17.0.2:
+    resolution: {integrity: sha1-DIIDoyn3bgQAR6NaEZfe/jQvqyA=, registry: https://registry.npm.taobao.org/, tarball: https://registry.nlark.com/use-memo-one/download/use-memo-one-1.1.2.tgz}
+    id: registry.nlark.com/use-memo-one/1.1.2
+    name: use-memo-one
+    version: 1.1.2
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0
+    dependencies:
+      react: registry.npmmirror.com/react/17.0.2
+    dev: false
 
   registry.nlark.com/wrappy/1.0.2:
     resolution: {integrity: sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8=, registry: https://registry.npm.taobao.org/, tarball: https://registry.nlark.com/wrappy/download/wrappy-1.0.2.tgz}
@@ -934,10 +998,40 @@ packages:
       '@emotion/memoize': registry.nlark.com/@emotion/memoize/0.7.4
     dev: false
 
+  registry.npmmirror.com/@types/hoist-non-react-statics/3.3.1:
+    resolution: {integrity: sha1-ESSq/lEYy1kZd66xzqrtEHDrA58=, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/hoist-non-react-statics/download/@types/hoist-non-react-statics-3.3.1.tgz}
+    name: '@types/hoist-non-react-statics'
+    version: 3.3.1
+    dependencies:
+      '@types/react': registry.npmmirror.com/@types/react/17.0.37
+      hoist-non-react-statics: registry.nlark.com/hoist-non-react-statics/3.3.2
+
+  registry.npmmirror.com/@types/lodash-es/4.17.5:
+    resolution: {integrity: sha1-HD/dFoSdhK6kOJCxxg2jeftQE1M=, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/lodash-es/download/@types/lodash-es-4.17.5.tgz}
+    name: '@types/lodash-es'
+    version: 4.17.5
+    dependencies:
+      '@types/lodash': registry.npmmirror.com/@types/lodash/4.14.177
+    dev: true
+
+  registry.npmmirror.com/@types/lodash/4.14.177:
+    resolution: {integrity: sha512-0fDwydE2clKe9MNfvXHBHF9WEahRuj+msTuQqOmAApNORFvhMYZKNGGJdCzuhheVjMps/ti0Ak/iJPACMaevvw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/lodash/download/@types/lodash-4.14.177.tgz}
+    name: '@types/lodash'
+    version: 4.14.177
+    dev: true
+
   registry.npmmirror.com/@types/prop-types/15.7.4:
     resolution: {integrity: sha1-/PcgXCXf95Xuea8eMNosl5CAjxE=, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/prop-types/download/@types/prop-types-15.7.4.tgz}
     name: '@types/prop-types'
     version: 15.7.4
+
+  registry.npmmirror.com/@types/react-beautiful-dnd/13.1.2:
+    resolution: {integrity: sha1-UQQFq7CfSTr9/YmL+DmV3GOFwTA=, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/react-beautiful-dnd/download/@types/react-beautiful-dnd-13.1.2.tgz}
+    name: '@types/react-beautiful-dnd'
+    version: 13.1.2
+    dependencies:
+      '@types/react': registry.npmmirror.com/@types/react/17.0.37
+    dev: true
 
   registry.npmmirror.com/@types/react-dom/17.0.11:
     resolution: {integrity: sha1-4ercPF6GvbX3aE4AJ0riKOe8xGY=, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/react-dom/download/@types/react-dom-17.0.11.tgz}
@@ -946,6 +1040,17 @@ packages:
     dependencies:
       '@types/react': registry.npmmirror.com/@types/react/17.0.37
     dev: true
+
+  registry.npmmirror.com/@types/react-redux/7.1.20:
+    resolution: {integrity: sha1-QvDmGrq7Yh4SxmyW3alMWEI7198=, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/react-redux/download/@types/react-redux-7.1.20.tgz}
+    name: '@types/react-redux'
+    version: 7.1.20
+    dependencies:
+      '@types/hoist-non-react-statics': registry.npmmirror.com/@types/hoist-non-react-statics/3.3.1
+      '@types/react': registry.npmmirror.com/@types/react/17.0.37
+      hoist-non-react-statics: registry.nlark.com/hoist-non-react-statics/3.3.2
+      redux: registry.npmmirror.com/redux/4.1.2
+    dev: false
 
   registry.npmmirror.com/@types/react-window/1.8.5:
     resolution: {integrity: sha1-KF/MXOpwPu942Q9JnhRX6bXAL8E=, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/react-window/download/@types/react-window-1.8.5.tgz}
@@ -968,6 +1073,16 @@ packages:
     resolution: {integrity: sha1-GmL4lSVyPd4kuhsBsJK/XfitTTk=, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/scheduler/download/@types/scheduler-0.16.2.tgz}
     name: '@types/scheduler'
     version: 0.16.2
+
+  registry.npmmirror.com/@types/styled-components/5.1.16:
+    resolution: {integrity: sha512-pj5zI2VvK86VB9vS5exwXpIvQxiiwVfBTmMYcfMzwQAhB6s+x0a7o2JKzsGviWgjjosuwfYlOyf3JrEvmLPhtg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/styled-components/download/@types/styled-components-5.1.16.tgz}
+    name: '@types/styled-components'
+    version: 5.1.16
+    dependencies:
+      '@types/hoist-non-react-statics': registry.npmmirror.com/@types/hoist-non-react-statics/3.3.1
+      '@types/react': registry.npmmirror.com/@types/react/17.0.37
+      csstype: registry.npmmirror.com/csstype/3.0.10
+    dev: true
 
   registry.npmmirror.com/@vitejs/plugin-react/1.1.0:
     resolution: {integrity: sha512-hRAqG6/lYf0mfDm/1r0U81vwPWMpyi87e4bFK+LvVQQeIgdh6TwvfuF20waenSGSumz6JH2bfk9DbxdgDLRp/w==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@vitejs/plugin-react/download/@vitejs/plugin-react-1.1.0.tgz}
@@ -1404,6 +1519,36 @@ packages:
     resolution: {integrity: sha1-eJcppNw23imZ3BVt1sHZwYzqVqQ=, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/react-is/download/react-is-16.13.1.tgz}
     name: react-is
     version: 16.13.1
+
+  registry.npmmirror.com/react-is/17.0.2:
+    resolution: {integrity: sha1-5pHUqOnHiTZWVVOas3J2Kw77VPA=, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/react-is/download/react-is-17.0.2.tgz}
+    name: react-is
+    version: 17.0.2
+    dev: false
+
+  registry.npmmirror.com/react-redux/7.2.6_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-SWM6JP5VK1+cr1j+uKE4k23f6ao=, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/react-redux/download/react-redux-7.2.6.tgz}
+    id: registry.npmmirror.com/react-redux/7.2.6
+    name: react-redux
+    version: 7.2.6
+    peerDependencies:
+      react: ^16.8.3 || ^17
+      react-dom: '*'
+      react-native: '*'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+    dependencies:
+      '@babel/runtime': registry.npmmirror.com/@babel/runtime/7.16.3
+      '@types/react-redux': registry.npmmirror.com/@types/react-redux/7.1.20
+      hoist-non-react-statics: registry.nlark.com/hoist-non-react-statics/3.3.2
+      loose-envify: registry.nlark.com/loose-envify/1.4.0
+      prop-types: registry.nlark.com/prop-types/15.7.2
+      react: registry.npmmirror.com/react/17.0.2
+      react-dom: registry.npmmirror.com/react-dom/17.0.2_react@17.0.2
+      react-is: registry.npmmirror.com/react-is/17.0.2
     dev: false
 
   registry.npmmirror.com/react-refresh/0.11.0:
@@ -1452,6 +1597,14 @@ packages:
     dependencies:
       loose-envify: registry.nlark.com/loose-envify/1.4.0
       object-assign: registry.nlark.com/object-assign/4.1.1
+    dev: false
+
+  registry.npmmirror.com/redux/4.1.2:
+    resolution: {integrity: sha1-FA81Qm2Zu0cpr3YK/PeeqqxAcQQ=, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/redux/download/redux-4.1.2.tgz?cache=0&sync_timestamp=1635663569710&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fredux%2Fdownload%2Fredux-4.1.2.tgz}
+    name: redux
+    version: 4.1.2
+    dependencies:
+      '@babel/runtime': registry.npmmirror.com/@babel/runtime/7.16.3
     dev: false
 
   registry.npmmirror.com/reset-css/5.0.1:
@@ -1526,6 +1679,12 @@ packages:
     engines: {node: '>=4'}
     dependencies:
       has-flag: registry.nlark.com/has-flag/3.0.0
+
+  registry.npmmirror.com/tiny-invariant/1.2.0:
+    resolution: {integrity: sha1-oRQfhrZyqRSMcul4oZpzublKFak=, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/tiny-invariant/download/tiny-invariant-1.2.0.tgz}
+    name: tiny-invariant
+    version: 1.2.0
+    dev: false
 
   registry.npmmirror.com/typescript/4.5.2:
     resolution: {integrity: sha512-5BlMof9H1yGt0P8/WF+wPNw6GfctgGjXp5hkblpyT+8rkASSmkUKMXrxR0Xg8ThVCi/JnHQiKXeBaEwCeQwMFw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/typescript/download/typescript-4.5.2.tgz}

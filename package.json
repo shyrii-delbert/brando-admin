@@ -7,15 +7,21 @@
     "serve": "vite preview"
   },
   "dependencies": {
+    "@douyinfe/semi-icons": "^2.1.4",
     "@douyinfe/semi-ui": "^2.1.4",
+    "lodash-es": "^4.17.21",
     "react": "^17.0.0",
+    "react-beautiful-dnd": "^13.1.0",
     "react-dom": "^17.0.0",
     "reset-css": "^5.0.1",
     "styled-components": "^5.3.3"
   },
   "devDependencies": {
+    "@types/lodash-es": "^4.17.5",
     "@types/react": "^17.0.0",
+    "@types/react-beautiful-dnd": "^13.1.2",
     "@types/react-dom": "^17.0.0",
+    "@types/styled-components": "^5.1.16",
     "@vitejs/plugin-react": "^1.0.0",
     "typescript": "^4.3.2",
     "vite": "^2.6.4"
