@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { ForwardedRef, forwardRef, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import { DragDropContext, Droppable, DropResult } from 'react-beautiful-dnd';
 
 import { Card, Upload, withField } from '@douyinfe/semi-ui';
@@ -10,9 +10,13 @@ interface UploadAreaProps {
   onChange?(e: { value: PhotoField[] }): void;
 }
 
-const UploadArea = ({ onChange }: UploadAreaProps) => {
+interface UploadAreaRef {
+  upload: () => Promise<string[]>;
+}
+
+const UploadArea = ({ onChange }: UploadAreaProps, ref: ForwardedRef<UploadAreaRef>) => {
   const [photos, setPhotos] = useState<PhotoField[]>([]);
-  const photoItemRefs = useRef<(PhotoItemRef | null)[]>([]);
+  const photoItemRefs = useRef<(PhotoItemRef)[]>([]);
 
   const handleFileChange = useCallback((files: File[]) => {
     const targetFiles = files.filter(f => !photos.find(p => p.imageFile.name === f.name));
@@ -58,6 +62,18 @@ const UploadArea = ({ onChange }: UploadAreaProps) => {
     });
   }, []);
 
+  const handleUpload = useCallback(async () => {
+    const results = [];
+    for (const item of photoItemRefs.current) {
+      results.push(await item.upload());
+    }
+    return results;
+  }, []);
+
+  useImperativeHandle(ref, () => ({
+    upload: handleUpload,
+  }), [handleUpload]);
+
   return (
     <Card
       style={{ width: '100%', backgroundColor: 'inherit', marginTop: 12 }}
@@ -84,7 +100,7 @@ const UploadArea = ({ onChange }: UploadAreaProps) => {
                   photoField={p}
                   onRemove={handleRemove}
                   onChange={handleChange}
-                  ref={ref => photoItemRefs.current[i] = ref}
+                  ref={ref => photoItemRefs.current[i] = ref!}
                 />
               ))}
               {provided.placeholder}
@@ -96,4 +112,4 @@ const UploadArea = ({ onChange }: UploadAreaProps) => {
   );
 };
 
-export default withField(UploadArea, { valueKey: 'value', onKeyChangeFnName: 'onChange', valuePath: 'value' });
+export default withField(forwardRef<UploadAreaRef, UploadAreaProps>(UploadArea), { valueKey: 'value', onKeyChangeFnName: 'onChange', valuePath: 'value' });

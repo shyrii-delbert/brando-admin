@@ -1,7 +1,7 @@
 import React, { ForwardedRef, forwardRef, useCallback, useEffect, useImperativeHandle, useState } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import { Button, Card, Col, Form, Progress, Row } from '@douyinfe/semi-ui';
-import { IconMinusCircle, IconTickCircle } from '@douyinfe/semi-icons';
+import { IconMinusCircle, IconTickCircle, IconUploadError } from '@douyinfe/semi-icons';
 import { PhotoField } from '../typings';
 import * as Styled from './styled';
 import { useUpload } from '$hooks/use-upload';
@@ -23,7 +23,7 @@ const PhotoItem = (props: PhotoItemProps, ref: ForwardedRef<PhotoItemRef>) => {
   const { photoField, index, onRemove, onChange } = props;
 
   const [imgSrc, setImgSrc] = useState<string | null>(null);
-  const [doUpload, uploaded, progress] = useUpload(photoField.imageFile);
+  const [doUpload, uploaded, error, progress] = useUpload(photoField.imageFile);
 
   const handleRemove = useCallback(() => {
     onRemove(index);
@@ -61,6 +61,7 @@ const PhotoItem = (props: PhotoItemProps, ref: ForwardedRef<PhotoItemRef>) => {
                 <Col>
                   <Styled.PreviewImage src={imgSrc!} />
                   {uploaded && <IconTickCircle style={{ marginTop: 16, color: 'var(--semi-color-primary)' }} />}
+                  {error && <IconUploadError style={{ marginTop: 16, color: 'var(--semi-color-danger)' }} />}
                   {!uploaded && progress > 0 && <Progress style={{ marginTop: 16 }} percent={progress} showInfo={true} />}
                 </Col>
                 <Form style={{ marginLeft: 16, width: '100%' }} onValueChange={handleValueChange as any}>

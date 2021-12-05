@@ -9,6 +9,7 @@ specifiers:
   '@types/react-dom': ^17.0.0
   '@types/styled-components': ^5.1.16
   '@vitejs/plugin-react': ^1.0.0
+  cos-js-sdk-v5: ^1.3.3
   lodash-es: ^4.17.21
   react: ^17.0.0
   react-beautiful-dnd: ^13.1.0
@@ -21,6 +22,7 @@ specifiers:
 dependencies:
   '@douyinfe/semi-icons': registry.npmmirror.com/@douyinfe/semi-icons/2.1.4_react@17.0.2
   '@douyinfe/semi-ui': registry.npmmirror.com/@douyinfe/semi-ui/2.1.4_d5c215a71cdc3853e6673ca67dc4c091
+  cos-js-sdk-v5: registry.npmmirror.com/cos-js-sdk-v5/1.3.3
   lodash-es: registry.nlark.com/lodash-es/4.17.21
   react: registry.npmmirror.com/react/17.0.2
   react-beautiful-dnd: registry.nlark.com/react-beautiful-dnd/13.1.0_react-dom@17.0.2+react@17.0.2
@@ -1166,6 +1168,14 @@ packages:
     requiresBuild: true
     dev: false
 
+  registry.npmmirror.com/cos-js-sdk-v5/1.3.3:
+    resolution: {integrity: sha512-X5v6rpmZYND52NPdRbdWFHyjfoGiIPTnLY+GZcjXJAJs/yxs6Qxfb0Wew/XWK2c7LTz8oS8l4kX/xS57fIhA9A==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/cos-js-sdk-v5/download/cos-js-sdk-v5-1.3.3.tgz}
+    name: cos-js-sdk-v5
+    version: 1.3.3
+    dependencies:
+      xmldom: registry.npmmirror.com/xmldom/0.1.31
+    dev: false
+
   registry.npmmirror.com/csstype/3.0.10:
     resolution: {integrity: sha512-2u44ZG2OcNUO9HDp/Jl8C07x6pU/eTR3ncV91SiK3dhG9TWvRVsCoJw14Ckx5DgWkzGA3waZWO3d7pgqpUI/XA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/csstype/download/csstype-3.0.10.tgz?cache=0&sync_timestamp=1637224567041&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fcsstype%2Fdownload%2Fcsstype-3.0.10.tgz}
     name: csstype
@@ -1215,7 +1225,7 @@ packages:
     dev: true
 
   registry.npmmirror.com/esbuild-android-arm64/0.13.15:
-    resolution: {integrity: sha512-m602nft/XXeO8YQPUDVoHfjyRVPdPgjyyXOxZ44MK/agewFFkPa8tUo6lAzSWh5Ui5PB4KR9UIFTSBKh/RrCmg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/esbuild-android-arm64/download/esbuild-android-arm64-0.13.15.tgz?cache=0&sync_timestamp=1637464530081&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fesbuild-android-arm64%2Fdownload%2Fesbuild-android-arm64-0.13.15.tgz}
+    resolution: {integrity: sha512-m602nft/XXeO8YQPUDVoHfjyRVPdPgjyyXOxZ44MK/agewFFkPa8tUo6lAzSWh5Ui5PB4KR9UIFTSBKh/RrCmg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/esbuild-android-arm64/download/esbuild-android-arm64-0.13.15.tgz}
     name: esbuild-android-arm64
     version: 0.13.15
     cpu: [arm64]
@@ -1726,3 +1736,11 @@ packages:
     optionalDependencies:
       fsevents: registry.npmmirror.com/fsevents/2.3.2
     dev: true
+
+  registry.npmmirror.com/xmldom/0.1.31:
+    resolution: {integrity: sha1-t2yaG9nwqXN+WnLcNyMc84N14v8=, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/xmldom/download/xmldom-0.1.31.tgz}
+    name: xmldom
+    version: 0.1.31
+    engines: {node: '>=0.1'}
+    deprecated: Deprecated due to CVE-2021-21366 resolved in 0.5.0
+    dev: false
