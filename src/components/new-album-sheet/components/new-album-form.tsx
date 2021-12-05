@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import React, { useCallback } from 'react';
 
 import { Button, Form, TextArea } from '@douyinfe/semi-ui';
 import UploadArea from './upload-area';
 
 const NewAlbumForm = () => {
-  const [value, setValue] = useState<any>({});
+  const handleSubmit = useCallback((value: any) => {
+    console.log(value);
+  }, []);
 
   return (
     <>
-      <Form onSubmit={setValue}>
+      <Form onSubmit={handleSubmit}>
         <Form.DatePicker
           type="date"
           label="日期"
@@ -32,7 +34,6 @@ const NewAlbumForm = () => {
         </Form.Slot>
         <Button style={{ marginTop: 24 }} type="primary" size="large" htmlType="submit">提交</Button>
       </Form>
-      <TextArea style={{ marginTop: 24, opacity: 0.6 }} readOnly value={JSON.stringify(value)} />
     </>
   );
 };

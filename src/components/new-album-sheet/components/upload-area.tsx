@@ -4,7 +4,7 @@ import { DragDropContext, Droppable, DropResult } from 'react-beautiful-dnd';
 import { Card, Upload, withField } from '@douyinfe/semi-ui';
 
 import { PhotoField } from '../typings';
-import PhotoItem, { PhotoItemRef } from './photo-item';
+import PhotoItem, { PhotoItemFieldValue, PhotoItemRef } from './photo-item';
 
 interface UploadAreaProps {
   onChange?(e: { value: PhotoField[] }): void;
@@ -47,6 +47,17 @@ const UploadArea = ({ onChange }: UploadAreaProps) => {
     });
   }, []);
 
+  const handleChange = useCallback((value: PhotoItemFieldValue, index: number) => {
+    setPhotos(photos => {
+      const newPhotos = [...photos];
+      newPhotos[index] = {
+        ...newPhotos[index],
+        ...value,
+      };
+      return newPhotos;
+    });
+  }, []);
+
   return (
     <Card
       style={{ width: '100%', backgroundColor: 'inherit', marginTop: 12 }}
@@ -72,6 +83,7 @@ const UploadArea = ({ onChange }: UploadAreaProps) => {
                   index={i}
                   photoField={p}
                   onRemove={handleRemove}
+                  onChange={handleChange}
                   ref={ref => photoItemRefs.current[i] = ref}
                 />
               ))}
