@@ -1,3 +1,7 @@
+import { PostImagesRes } from '$typings/images';
+import { Response } from '$typings/response';
+import { cos } from '$utils/cos';
+import { Api } from '$utils/request';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 export const useUpload = (file: File) => {
@@ -10,6 +14,15 @@ export const useUpload = (file: File) => {
     if (uploaded) {
       return uploadedId.current;
     }
+
+    const res = await Api.images.post(file.name.split('.').pop()!);
+    const { data: { bucket, region, path, imageId } }: Response<PostImagesRes> = await res.json();
+
+    cos.putBucket({
+      Bucket: bucket,
+      Region: region,
+      
+    });
     
   }, [file, uploaded]);
 

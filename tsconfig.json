@@ -17,6 +17,9 @@
     "jsx": "react-jsx",
     "paths": {
       "$hooks/*": ["./src/hooks/*"],
+      "$utils/*": ["./src/utils/*"],
+      "$consts/*": ["./src/consts/*"],
+      "$typings/*": ["./src/typings/*"],
       "$components/*": ["./src/components/*"],
     }
   },
