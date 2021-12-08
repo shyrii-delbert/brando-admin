@@ -10,8 +10,8 @@ interface UploadAreaProps {
   onChange?(e: { value: PhotoField[] }): void;
 }
 
-interface UploadAreaRef {
-  upload: () => Promise<string[]>;
+export interface UploadAreaRef {
+  upload: () => Promise<(string | null)[]>;
 }
 
 const UploadArea = ({ onChange }: UploadAreaProps, ref: ForwardedRef<UploadAreaRef>) => {

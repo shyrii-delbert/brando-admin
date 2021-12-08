@@ -16,7 +16,7 @@ interface PhotoItemProps {
 export interface PhotoItemFieldValue { title: string, description: string }
 
 export interface PhotoItemRef {
-  upload: () => Promise<string>;
+  upload: () => Promise<string | null>;
 }
 
 const PhotoItem = (props: PhotoItemProps, ref: ForwardedRef<PhotoItemRef>) => {

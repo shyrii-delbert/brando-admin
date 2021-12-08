@@ -14,9 +14,13 @@ export const Api = {
         body: JSON.stringify({ imageType }),
       });
     },
-    patch: async () => {
+    patch: async (imageId: string) => {
       return await fetch(ApiUrl.images.root, {
         method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ imageId }),
       });
     },
   }

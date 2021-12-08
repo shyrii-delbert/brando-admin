@@ -1,11 +1,14 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useRef } from 'react';
 
-import { Button, Form, TextArea } from '@douyinfe/semi-ui';
-import UploadArea from './upload-area';
+import { Button, Form } from '@douyinfe/semi-ui';
+import UploadArea, { UploadAreaRef } from './upload-area';
 
 const NewAlbumForm = () => {
-  const handleSubmit = useCallback((value: any) => {
-    console.log(value);
+  const uploadAreaRef = useRef<UploadAreaRef>();
+
+  const handleSubmit = useCallback(async (value: any) => {
+    const uploadRes = await uploadAreaRef.current?.upload();
+    console.log(value, uploadRes);
   }, []);
 
   return (
@@ -30,7 +33,7 @@ const NewAlbumForm = () => {
           rules={[{ required: true }]}
         />
         <Form.Slot>
-          <UploadArea field="photos" label="图片" rules={[{ required: true }]} />
+          <UploadArea ref={uploadAreaRef} field="photos" label="图片" rules={[{ required: true }]} />
         </Form.Slot>
         <Button style={{ marginTop: 24 }} type="primary" size="large" htmlType="submit">提交</Button>
       </Form>
