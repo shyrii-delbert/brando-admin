@@ -15,12 +15,8 @@ export const Api = {
       });
     },
     patch: async (imageId: string) => {
-      return await fetch(ApiUrl.images.root, {
+      return await fetch(ApiUrl.images.root + `${imageId}`, {
         method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ imageId }),
       });
     },
   }
