@@ -21,7 +21,7 @@ const UploadArea = ({ onChange }: UploadAreaProps, ref: ForwardedRef<UploadAreaR
   const handleFileChange = useCallback((files: File[]) => {
     const targetFiles = files.filter(f => !photos.find(p => p.imageFile.name === f.name));
     if (targetFiles.length) {
-      setPhotos([...photos, ...targetFiles.map(f => ({ imageFile: f, title: '', description: '' }))]);
+      setPhotos([...photos, ...targetFiles.map(f => ({ imageFile: f, title: '', description: '', isPost: false }))]);
     }
   }, [photos]);
 
@@ -70,6 +70,17 @@ const UploadArea = ({ onChange }: UploadAreaProps, ref: ForwardedRef<UploadAreaR
     return results;
   }, []);
 
+  const handleIsPostChange = useCallback((checked: boolean, index: number) => {
+    setPhotos(photos => {
+      const newPhotos = photos.map(p => ({ ...p, isPost: false }));
+      newPhotos[index] = {
+        ...newPhotos[index],
+        isPost: checked,
+      };
+      return newPhotos;
+    });
+  }, []);
+
   useImperativeHandle(ref, () => ({
     upload: handleUpload,
   }), [handleUpload]);
@@ -100,6 +111,7 @@ const UploadArea = ({ onChange }: UploadAreaProps, ref: ForwardedRef<UploadAreaR
                   photoField={p}
                   onRemove={handleRemove}
                   onChange={handleChange}
+                  onIsPostChange={handleIsPostChange}
                   ref={ref => photoItemRefs.current[i] = ref!}
                 />
               ))}

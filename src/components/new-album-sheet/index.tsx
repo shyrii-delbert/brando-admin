@@ -21,7 +21,7 @@ const NewAlbumSheet = (props: NewAlbumSheetProps) => {
       style={{ overflow: 'hidden' }}
       bodyStyle={{ overflowY: 'auto' }}
     >
-      <NewAlbumForm />
+      <NewAlbumForm onExit={onCancel} />
     </SideSheet>
   );
 };

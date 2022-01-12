@@ -1,12 +1,13 @@
+import { PostAlbumsReq } from '$typings/albums';
 import { ApiUrl } from './env';
 
 export const Api = {
   images: {
-    authorize: async () => {
-      return await fetch(ApiUrl.images.authorize);
+    authorize: () => {
+      return fetch(ApiUrl.images.authorize);
     },
-    post: async (imageType: string) => {
-      return await fetch(ApiUrl.images.root, {
+    post: (imageType: string) => {
+      return fetch(ApiUrl.images.root, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -14,10 +15,21 @@ export const Api = {
         body: JSON.stringify({ imageType }),
       });
     },
-    patch: async (imageId: string) => {
-      return await fetch(ApiUrl.images.root + `${imageId}`, {
+    patch: (imageId: string) => {
+      return fetch(ApiUrl.images.root + `${imageId}`, {
         method: 'PATCH',
       });
     },
+  },
+  albums: {
+    post: (postAlbumReq: PostAlbumsReq) => {
+      return fetch(ApiUrl.albums.root, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(postAlbumReq),
+      });
+    }
   }
 };

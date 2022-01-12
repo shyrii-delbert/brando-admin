@@ -11,4 +11,7 @@ export const ApiUrl = {
     authorize: baseUrl + '/images/authorize',
     root: baseUrl + '/images/',
   },
+  albums: {
+    root: baseUrl + '/albums/',
+  }
 };
