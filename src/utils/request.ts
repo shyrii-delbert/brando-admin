@@ -10,7 +10,7 @@ export const Api = {
       return fetch(ApiUrl.images.root, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({ imageType }),
       });
@@ -21,15 +21,22 @@ export const Api = {
       });
     },
   },
+  user: {
+    get: () => {
+      return fetch(ApiUrl.user.root, {
+        credentials: 'include',
+      });
+    },
+  },
   albums: {
     post: (postAlbumReq: PostAlbumsReq) => {
       return fetch(ApiUrl.albums.root, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(postAlbumReq),
       });
-    }
-  }
+    },
+  },
 };
