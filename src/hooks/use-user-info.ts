@@ -10,7 +10,7 @@ export const useUserInfo = () => {
     (async () => {
       try {
         const res = await Api.user.get();
-        const userInfo: Response<{ user: User }> = await res.json();
+        const userInfo = res.data;
         if (!userInfo.data.user) {
           throw new Error("Can't get user info");
         }

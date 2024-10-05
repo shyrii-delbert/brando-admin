@@ -19,7 +19,7 @@ const NewAlbumForm = ({ onExit }: { onExit: () => void }) => {
 
     const uploadRes = await uploadAreaRef.current?.upload();
 
-    if (!uploadRes || uploadRes.some(id => !id) || uploadRes.length === 0) {
+    if (!uploadRes || uploadRes.some((id) => !id) || uploadRes.length === 0) {
       setSubmitting(false);
       Toast.close(loadingToast);
       Toast.error('有图片上传失败了哦，请检查一下');
@@ -28,29 +28,33 @@ const NewAlbumForm = ({ onExit }: { onExit: () => void }) => {
 
     const { date, mainArea, subArea, photos } = value;
 
-    const postRes = await Api.albums.post({
-      mainArea,
-      subArea,
-      date: date.toISOString(),
-      photos: photos.map((p, i) => ({
-        title: p.title,
-        description: p.description,
-        isPost: p.isPost,
-        imageId: uploadRes[i] as string,
-      })),
-    });
+    try {
+      const postRes = await Api.albums.post({
+        mainArea,
+        subArea,
+        date: date.toISOString(),
+        photos: photos.map((p, i) => ({
+          title: p.title,
+          description: p.description,
+          isPost: p.isPost,
+          imageId: uploadRes[i] as string,
+        })),
+      });
+      const postResData = postRes.data;
 
-    const postResData = await postRes.json();
+      Toast.close(loadingToast);
+      setSubmitting(false);
 
-    Toast.close(loadingToast);
-    setSubmitting(false);
-
-    if (postResData.code !== 0) {
-      console.error(postRes, postResData);
-      Toast.error('创建失败：' + JSON.stringify(postResData));
-    } else {
-      Toast.success('创建成功');
-      onExit();
+      if (postResData.code !== 0) {
+        console.error(postRes, postResData);
+        Toast.error('创建失败：' + JSON.stringify(postResData));
+      } else {
+        Toast.success('创建成功');
+        onExit();
+      }
+    } catch (e) {
+      setSubmitting(false);
+      Toast.error('创建失败：' + JSON.stringify(e));
     }
   }, []);
 
@@ -76,11 +80,18 @@ const NewAlbumForm = ({ onExit }: { onExit: () => void }) => {
           rules={[{ required: true }]}
         />
         <Form.Slot>
-          <UploadArea ref={uploadAreaRef} field="photos" label="图片" rules={[{ required: true }]} />
+          <UploadArea
+            ref={uploadAreaRef}
+            field="photos"
+            label="图片"
+            rules={[{ required: true }]}
+          />
         </Form.Slot>
         <Button
           style={{ marginTop: 24 }}
-          type="primary" size="large" htmlType="submit"
+          type="primary"
+          size="large"
+          htmlType="submit"
           loading={submitting}
         >
           提交

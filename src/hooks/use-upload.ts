@@ -1,8 +1,6 @@
-import { PostImagesRes } from '$typings/images';
-import { Response } from '$typings/response';
-import { cos } from '$utils/cos';
 import { Api } from '$utils/request';
 import { Toast } from '@douyinfe/semi-ui';
+import { AxiosProgressEvent } from 'axios';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 export const useUpload = (file: File) => {
@@ -31,38 +29,24 @@ export const useUpload = (file: File) => {
         return;
       }
 
-      const res = await Api.images.post(file.name.split('.').pop()!);
-      const { data: { bucket, region, path, imageId } }: Response<PostImagesRes> = await res.json();
+      const form = new FormData();
+      form.set('image', file);
 
-      cos.putObject({
-        Bucket: bucket,
-        Region: region,
-        Key: path,
-        StorageClass: 'STANDARD',
-        Body: file,
-        onProgress: (params => {
-          setProgress(params.percent * 100);
-        }),
-      }, async (err, data) => {
-        if (err) {
-          handleError(err);
-          resolve(null);
-          return;
-        } else {
-          const res = await Api.images.patch(imageId);
-          const resObj: Response<{}> = await res.json();
-          if (resObj.code === 0) {
-            handleSuccess();
-            uploadedId.current = imageId;
-            resolve(imageId);
-          } else {
-            handleError(resObj);
-            resolve(null);
-          }
-        }
-      });
-    })
+      const handleProgress = (progress: AxiosProgressEvent) => {
+        setProgress((progress.rate || 0) * 100);
+      };
 
+      try {
+        const res = await Api.images.post(form, handleProgress);
+
+        handleSuccess();
+        uploadedId.current = res.data.data.imageId;
+        resolve(res.data.data.imageId);
+      } catch (err) {
+        handleError(err);
+        resolve(null);
+      }
+    });
   }, [file, uploaded]);
 
   useEffect(() => {

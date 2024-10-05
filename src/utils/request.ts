@@ -1,42 +1,34 @@
 import { PostAlbumsReq } from '$typings/albums';
-import { ApiUrl } from './env';
+import { PostImagesRes } from '$typings/images';
+import { Response } from '$typings/response';
+import { User } from '$typings/user';
+import { ApiUrl, baseUrl } from './env';
+import axios, { AxiosProgressEvent } from 'axios';
+
+const instance = axios.create({
+  withCredentials: true,
+  baseURL: baseUrl,
+});
 
 export const Api = {
   images: {
-    authorize: () => {
-      return fetch(ApiUrl.images.authorize);
-    },
-    post: (imageType: string) => {
-      return fetch(ApiUrl.images.root, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ imageType }),
-      });
-    },
-    patch: (imageId: string) => {
-      return fetch(ApiUrl.images.root + `${imageId}`, {
-        method: 'PATCH',
+    post: (
+      form: FormData,
+      handleProgress?: (p: AxiosProgressEvent) => void
+    ) => {
+      return instance.post<Response<PostImagesRes>>(ApiUrl.images.root, form, {
+        onUploadProgress: handleProgress,
       });
     },
   },
   user: {
     get: () => {
-      return fetch(ApiUrl.user.root, {
-        credentials: 'include',
-      });
+      return instance.get<Response<{ user: User }>>(ApiUrl.user.root);
     },
   },
   albums: {
     post: (postAlbumReq: PostAlbumsReq) => {
-      return fetch(ApiUrl.albums.root, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(postAlbumReq),
-      });
+      return instance.post<Response<{}>>(ApiUrl.albums.root, postAlbumReq);
     },
   },
 };

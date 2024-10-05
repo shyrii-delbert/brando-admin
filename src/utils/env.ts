@@ -1,14 +1,14 @@
-const baseUrl = API_END_POINT + '/api/v1';
+export const baseUrl = API_END_POINT + '/api/v1';
 
 export const ApiUrl = {
   images: {
-    authorize: baseUrl + '/images/authorize',
-    root: baseUrl + '/images/',
+    authorize: '/images/authorize',
+    root: '/images/',
   },
   user: {
-    root: baseUrl + '/user',
+    root: '/user',
   },
   albums: {
-    root: baseUrl + '/albums/',
+    root: '/albums/',
   },
 };
