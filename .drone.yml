@@ -1,0 +1,45 @@
+---
+kind: pipeline
+name: Build & Deploy
+type: docker
+
+steps:
+  - name: install deps
+    image: node:20
+    commands:
+      - npm i -g pnpm
+      - pnpm i
+
+  - name: build
+    image: node:20
+    environment:
+      API_END_POINT:
+        from_secret: api_end_point
+      LOGIN_URL:
+        from_secret: login_url
+    commands:
+      - 'echo "export default { }" > dev.config.ts'
+      - npm run build
+
+  - name: upload
+    image: plugins/s3
+    settings:
+      bucket:
+        from_secret: s3_bucket
+      access_key:
+        from_secret: s3_secret_id
+      secret_key:
+        from_secret: s3_secret_key
+      endpoint:
+        from_secret: s3_endpoint
+      region:
+        from_secret: s3_region
+      source: dist/**/*
+      strip_prefix: dist/
+      target: /
+
+trigger:
+  branch:
+    - main
+  event:
+    - push

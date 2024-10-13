@@ -2,9 +2,9 @@
   "name": "brando-admin",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "serve": "vite preview"
+    "dev": "rsbuild dev",
+    "build": "rsbuild build",
+    "preview": "rsbuild preview"
   },
   "dependencies": {
     "@douyinfe/semi-icons": "^2.1.4",
@@ -21,18 +21,18 @@
     "styled-components": "^5.3.3"
   },
   "devDependencies": {
+    "@rsbuild/core": "^1.0.13",
+    "@rsbuild/plugin-react": "^1.0.3",
     "@types/lodash-es": "^4.17.5",
     "@types/node": "^22.5.5",
     "@types/react": "^17.0.0",
     "@types/react-beautiful-dnd": "^13.1.2",
     "@types/react-dom": "^17.0.0",
     "@types/styled-components": "^5.1.16",
-    "@vitejs/plugin-react": "^1.0.0",
     "autoprefixer": "^10.4.20",
     "dotenv": "^16.4.5",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.13",
-    "typescript": "^4.3.2",
-    "vite": "^2.6.4"
+    "typescript": "^4.3.2"
   }
 }
