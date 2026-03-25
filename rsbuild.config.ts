@@ -1,10 +1,10 @@
 import { defineConfig } from '@rsbuild/core';
 import path from 'path';
 import config from './dev.config';
-import dotenv from 'dotenv';
 import { pluginReact } from '@rsbuild/plugin-react';
+import { defaultAppEnvironment, getAppConfig } from './app-env.config';
 
-dotenv.config();
+const appConfig = getAppConfig(process.env.APP_ENV ?? defaultAppEnvironment);
 
 export default defineConfig({
   source: {
@@ -12,8 +12,8 @@ export default defineConfig({
       index: './src/main.tsx',
     },
     define: {
-      API_END_POINT: `'${process.env.API_END_POINT}'`,
-      LOGIN_URL: `'${process.env.LOGIN_URL}'`,
+      API_END_POINT: JSON.stringify(appConfig.API_END_POINT),
+      LOGIN_URL: JSON.stringify(appConfig.LOGIN_URL),
     },
     alias: {
       $hooks: path.resolve(__dirname, './src/hooks'),
