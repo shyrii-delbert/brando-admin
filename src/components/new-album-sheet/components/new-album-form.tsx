@@ -6,7 +6,13 @@ import { Api } from '$utils/request';
 import UploadArea, { UploadAreaRef } from './upload-area';
 import { FormField } from '../typings';
 
-const NewAlbumForm = ({ onExit }: { onExit: () => void }) => {
+const NewAlbumForm = ({
+  onExit,
+  onSuccess,
+}: {
+  onExit: () => void;
+  onSuccess?: () => void;
+}) => {
   const uploadAreaRef = useRef<UploadAreaRef | null>(null);
   const [submitting, setSubmitting] = useState<boolean>(false);
 
@@ -50,6 +56,7 @@ const NewAlbumForm = ({ onExit }: { onExit: () => void }) => {
         Toast.error('创建失败：' + JSON.stringify(postResData));
       } else {
         Toast.success('创建成功');
+        onSuccess?.();
         onExit();
       }
     } catch (e) {

@@ -9,9 +9,14 @@ import NewAlbumSheet from '$components/new-album-sheet';
 const AlbumsAdmin = () => {
   const [newAlbumSheetVisible, setNewAlbumSheetVisible] =
     useState<boolean>(false);
+  const [refreshKey, setRefreshKey] = useState<number>(0);
 
   const onNewAlbumSheetChange = useCallback(() => {
     setNewAlbumSheetVisible((v) => !v);
+  }, []);
+
+  const handleAlbumsChange = useCallback(() => {
+    setRefreshKey((value) => value + 1);
   }, []);
 
   return (
@@ -22,10 +27,11 @@ const AlbumsAdmin = () => {
           创建
         </Button>
       </Row>
-      <Albums />
+      <Albums refreshKey={refreshKey} onChanged={handleAlbumsChange} />
       <NewAlbumSheet
         visible={newAlbumSheetVisible}
         onCancel={onNewAlbumSheetChange}
+        onSuccess={handleAlbumsChange}
       />
     </>
   );

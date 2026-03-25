@@ -6,10 +6,11 @@ import NewAlbumForm from './components/new-album-form';
 interface NewAlbumSheetProps {
   visible: boolean;
   onCancel: () => void;
+  onSuccess?: () => void;
 }
 
 const NewAlbumSheet = (props: NewAlbumSheetProps) => {
-  const { visible, onCancel } = props;
+  const { visible, onCancel, onSuccess } = props;
   return (
     <SideSheet
       maskClosable={false}
@@ -21,7 +22,7 @@ const NewAlbumSheet = (props: NewAlbumSheetProps) => {
       style={{ overflow: 'hidden' }}
       bodyStyle={{ overflowY: 'auto' }}
     >
-      <NewAlbumForm onExit={onCancel} />
+      <NewAlbumForm onExit={onCancel} onSuccess={onSuccess} />
     </SideSheet>
   );
 };

@@ -73,7 +73,7 @@ const PhotoItem = (props: PhotoItemProps, ref: ForwardedRef<PhotoItemRef>) => {
                 <Row style={{ marginLeft: 16, width: '100%' }}>
                   <Form onValueChange={handleValueChange as any}>
                     <Form.Input fieldStyle={{ paddingTop: 0 }} field="title" label="标题" rules={[{ required: true }]} placeholder="茶颜悦色打卡中" />
-                    <Form.TextArea field="description" label="描述" rules={[{ required: true }]} placeholder="这是一杯不错的奶茶..." />
+                    <Form.TextArea field="description" label="描述" placeholder="这是一杯不错的奶茶..." />
                   </Form>
                   <Checkbox onChange={handleIsPostChange} checked={photoField.isPost}>设置为封面</Checkbox>
                 </Row>
