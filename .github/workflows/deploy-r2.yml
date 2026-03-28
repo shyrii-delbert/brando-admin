@@ -1,0 +1,45 @@
+name: Deploy To R2
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+      AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION || 'auto' }}
+      AWS_EC2_METADATA_DISABLED: 'true'
+      R2_BUCKET: ${{ secrets.R2_BUCKET }}
+      R2_ENDPOINT: ${{ secrets.R2_ENDPOINT }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
+
+      - name: Install pnpm
+        run: npm install --global pnpm@9
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm build
+
+      - name: Install AWS CLI
+        run: sudo apt-get update && sudo apt-get install -y awscli
+
+      - name: Verify AWS CLI
+        run: aws --version
+
+      - name: Upload dist to R2 root
+        run: aws s3 sync dist "s3://${R2_BUCKET}" --endpoint-url "${R2_ENDPOINT}" --no-progress
