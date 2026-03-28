@@ -1,10 +1,11 @@
 import { defineConfig } from '@rsbuild/core';
 import path from 'path';
-import config from './dev.config';
 import { pluginReact } from '@rsbuild/plugin-react';
 import { defaultAppEnvironment, getAppConfig } from './app-env.config';
 
 const appConfig = getAppConfig(process.env.APP_ENV ?? defaultAppEnvironment);
+const devServerPort = Number(process.env.DEV_SERVER_PORT ?? '8083');
+const devHmrPort = Number(process.env.DEV_HMR_PORT ?? '8083');
 
 export default defineConfig({
   source: {
@@ -29,11 +30,11 @@ export default defineConfig({
   plugins: [pluginReact()],
   server: {
     host: '0.0.0.0',
-    port: config.port,
+    port: devServerPort,
   },
   dev: {
     client: {
-      port: config.hmr,
+      port: devHmrPort,
     },
   },
 });
