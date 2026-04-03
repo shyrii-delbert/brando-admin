@@ -1,9 +1,15 @@
 name: Deploy To R2
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: Deployment target
+        required: true
+        type: choice
+        options:
+          - Online
+          - Staging
 
 jobs:
   deploy:
@@ -13,11 +19,20 @@ jobs:
       AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
       AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION || 'auto' }}
       AWS_EC2_METADATA_DISABLED: 'true'
-      R2_BUCKET: ${{ secrets.R2_BUCKET }}
       R2_ENDPOINT: ${{ secrets.R2_ENDPOINT }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Select deployment settings
+        run: |
+          if [ "${{ inputs.environment }}" = "Staging" ]; then
+            echo "R2_BUCKET=${{ secrets.R2_STAGING_BUCKET }}" >> "$GITHUB_ENV"
+            echo "BUILD_COMMAND=pnpm build:staging" >> "$GITHUB_ENV"
+          else
+            echo "R2_BUCKET=${{ secrets.R2_BUCKET }}" >> "$GITHUB_ENV"
+            echo "BUILD_COMMAND=pnpm build" >> "$GITHUB_ENV"
+          fi
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
@@ -35,7 +50,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build
-        run: pnpm build
+        run: ${{ env.BUILD_COMMAND }}
 
       - name: Install AWS CLI
         run: |
